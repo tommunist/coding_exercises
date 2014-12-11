@@ -1,0 +1,10 @@
+def fib(n)
+  return 1 if n <2
+  fibo(1,1, n)
+  
+end
+
+def fibo(seed1,seed2, n)
+  return seed1+seed2 if n ==1
+  fibo(seed2, seed1+seed2, n-1)
+end

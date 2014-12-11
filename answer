@@ -1,0 +1,35 @@
+
+function getElementsByClassName(className) {
+    var allElements = document.getElementsByTagName('body')[0].children;
+    var elementsWithClass = [];
+    
+    elementsWithClass = elementsWithClass.concat(getElementsWithClassForNodes(allElements, className));
+    
+    return elementsWithClass;
+}
+
+function getElementsWithClassForNodes(nodes, className) {
+    var nodesWithClassName = []
+    //debugger;
+    for(var i=0; i<nodes.length; ++i) {
+        var classAttr = nodes[i].getAttribute('class');
+        if(classAttr && hasClass(className, classAttr)) {
+            nodesWithClassName.push(nodes[i]);
+        }
+        nodesWithClassName = nodesWithClassName.concat(getElementsWithClassForNodes(nodes[i].children, className));
+    }
+    return nodesWithClassName;
+}
+
+function hasClass(className, classAttr) {
+    var classes = classAttr.split(' ');
+    for(var i=0; i<classes.length; i++) {
+        if(classes[i] === className) {
+          return true;
+        }
+    }
+    return false;
+    
+}
+
+//'create-account-message'  
